@@ -1,0 +1,210 @@
+
+/* latin-ext 
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/UyBMtLsHKBKXelqf4x7VRQ.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+         latin 
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+    */
+
+        @font-face {
+            font-family: 'LM Mono Light 10';
+            src: url("fonts/lmmonolt10-regular.otf") format("opentype");
+}
+        body {
+            height: 100%; width: 100%; margin: 0; font-family: "LM Mono Light 10";
+            /*background-color: black;*/
+            background-image: url(otherimg/hintergrund.png);
+            background-size: 100% auto;
+        }
+        .body2 {
+            margin-left: 11vw;
+            margin-right: 11vw;
+            float:left;
+            position: absolute;
+        }
+        .information1 {
+            margin-left:7vw;
+            width: 65vw;
+           /* margin-right: 10vw;*/
+            margin-top: 0vw;
+            margin-bottom: 2px;
+            font-size: 1.7vw;
+            color: #6e6961;
+            text-align: center;
+        }
+                .information2 {
+            margin-left:8vw;
+            width: 63vw;
+           /* margin-right: 10vw;*/
+            margin-top: 0vw;
+            margin-bottom: 2px;
+            font-size: 1.5vw;
+            color: #6e6961;
+            text-align: justify;
+        }
+        .boxr {
+            float: right;
+            width: 49%;
+            margin-right: 0.5%;
+            margin-left: 0.5%;
+            margin-top: 1vw;
+            margin-bottom:2.5vw;
+            /*border : 1px solid #fff;*/
+        }
+        .boxl {
+            float: left;
+            width: 49%;
+            margin-right: 0.5%;
+            margin-left: 0.5%;
+            margin-top: 1vw;
+            margin-bottom:2.5vw;
+            /*border: 1px solid #fff;*/
+        }
+        .bildMitHover {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            height: 10vw;
+            width: auto;
+        }
+        .imgDescription {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-top: 0.5vw;
+            margin-left:0.5vw;
+            margin-right:0.5vw;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            padding-top:0.5vw;
+            background-color: rgba(255,255,255, 0.8);
+            font-size:1.5vw;
+            font-weight: bold;
+
+            visibility: hidden;
+            opacity: 1;
+
+            transition: visibility opacity 0.35s;
+            -webkit-transition: visibility opacity 0.35s;
+
+        }
+        .bildMitHover:hover .imgDescription {
+            visibility: visible;
+            opacity: 1;
+        }
+        .boxEingeklappt{
+            width:100%;
+            height:15vw;
+        }
+        .scrollbutton{
+            width: auto;
+            height:3vw;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width:auto;
+            height:10vw;
+            
+            
+        }
+        .gobutton{
+            line-height:4vw;
+            width:40vw;
+            font-size: 3vw;
+            border:5px solid #b4a68e;
+            font-family: "LM Mono Light 10";
+            color: #65625c;
+            margin-right: 2vw;
+        }
+      
+        .gs-title a { 
+     
+            font-size: 1.5vw !important;
+            line-height: 2vw !important;
+        }
+        .gs-title { 
+     
+            font-size: 1.5vw !important;
+            line-height: 2vw !important;
+        }
+        .gs-title b { 
+      
+            font-size: 1.5vw !important;
+            line-height: 2vw !important;
+        }
+
+        .gs-snippet {
+            font-size: 1vw !important;
+            line-height: 1.1vw !important;
+        }
+        .gs-visible-Url {
+            font-size: 1vw !important;
+        }
+        .gs-visible-Url-long {
+            font-size: 1vw !important;
+        }
+        .gs-snippet b {
+            font-size: 1vw !important;
+            line-height: 1.1vw !important;
+        }
+   
+        .gsc-url-top{
+            font-size: 1vw !important;
+        } 
+        /*
+        .gsc-thumbnail td {
+            width: 80% !important;
+        }
+        .gsc-table-cell-thumbnail td {
+            width: 80% !important;
+        }
+        .gsc-image a {
+            display: inline-block !important;
+            width: 100% !important;
+        }
+        .gsc-image {
+            width: 5vw !important;
+            overflow: visible !important;
+        }
+        table td:first-child {
+            width: 80% !important;
+        }
+        .gs-image-box{
+            width:100% !important;
+        }
+        .gsc-result-info{
+            font-size: 5px !important;
+        }
+        */ 
+        .gs-bidi-start-align {
+            font-size: 1vw !important;
+            line-height: 1.1vw !important;
+        
+        }
+        .gsc-above-wrapper-area{
+            line-height: 1.3vw !important;
+            font-size: 1.2vw !important;
+            
+        }
+        .gsc-result-info{
+            font-size: 1.2vw !important;
+        }
