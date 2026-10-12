@@ -1,0 +1,773 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="language" content="en">
+        <meta name="keywords" content="sheet, free, music, search, sheet music, score, piano, guitar, flute, search engine, find, chords">
+        <meta name="description" content="SheetSearch - Your search engine for free sheet music and scores powered by Google Custom Search">
+        <meta name="page-topic" content="search engine">
+        <meta http-equiv="imagetoolbar" content="false">
+
+        <link rel="icon" href="otherimg/iconflieger.ico" type="image/vnd.microsoft.icon">
+        <title>SheetSearch</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet"> 
+        <link href="http://allfont.de/allfont.css?fonts=latin-modern-mono-light-10-regul" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="style/latinmodern-mono-light.css" type="text/css" charset="utf-8" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="sheetsearch.css">
+
+        <script language="javascript" type="text/javascript" src="sheetsearch.js"></script>
+    </head>
+
+    <body>
+        <div class="body2">
+
+            <!-- Logo -->
+
+            <header style="width:100%; margin-bottom: 3vw;">
+                <img style="width:30%; height:auto; margin-left: 12% " src="logos/fliegergross.png" alt="SheetSearch" />
+                <img style="width:45%; height:auto;" src="logos/textlogo.png" alt="SheetSearch" />
+            </header>
+            <p class="information1"><b>Welcome to SheetSearch.tk, your site for searching free sheet music.</b></p>
+            <p class="information2">Choose an instrument, enter a title and/or an artist, press the start button
+                and open the different platforms and compare the results. Search for classical, pop, alternative, ragtime and all other kinds of music for the piano, the guitar, the flute or for the choir/singing.
+            </p>
+            <nav style="margin-top: 3vw; margin-right: 10vw; margin-left: 10vw;">
+                <img id="auswahlpiano" src="buttons/fluegelaus.png" onclick="selectInst('auswahlpiano')" style="width:8vw; margin-left:5vw; margin-top: 0.5vw; cursor: pointer;" alt="Piano"/>
+                <img id="auswahlguitar" src="buttons/guitaraus.png" onclick="selectInst('auswahlguitar')" style="width:8vw; margin-left:5vw; cursor: pointer;" alt="Guitar"/>
+                <img id="auswahlflute" src="buttons/fluteaus.png" onclick="selectInst('auswahlflute')" style="width:8vw; margin-left:5vw; cursor: pointer;" alt="Flute"/>
+                <img id="auswahlvoice" src="buttons/voiceaus.png" onclick="selectInst('auswahlvoice')" style="width:8vw; margin-left:5vw; cursor: pointer;" alt="Singing"/>
+
+                <!-- Aktualisierung Auswahl -->
+                <script type="text/javascript">
+                    var googleIDArray = ["012835365471535021232:maxqgebnsam", "012835365471535021232:foutaswj8to", "012835365471535021232:lufb9jbuxba", "012835365471535021232:yjbanjxbrig"];
+                    var x;
+                    switch (localStorage.getItem('speicher')) {
+                        case googleIDArray[0]:
+                            x = document.getElementById('auswahlpiano');
+                            x.src = "buttons/fluegelan.png";
+                            break;
+                        case googleIDArray[1]:
+                            x = document.getElementById('auswahlguitar');
+                            x.src = "buttons/guitaran.png";
+                            break;
+                        case googleIDArray[2]:
+                            x = document.getElementById('auswahlflute');
+                            x.src = "buttons/flutean.png";
+                            break;
+                        case googleIDArray[3]:
+                            x = document.getElementById('auswahlvoice');
+                            x.src = "buttons/voicean.png";
+                            break;
+                    }
+                    if (suchnummer == googleIDArray[0]) {
+                        x = document.getElementById('auswahlpiano');
+                        x.src = "buttons/fluegelan.png";
+                    }
+
+                </script>
+
+                <!-- Form Suche -->
+                <div id="sucheingame" style="margin-right: 3vw; margin-left: 5vw;   margin-top: 2vw;  ">
+
+                    <form onsubmit="return !!(executeQuery1() & executeQuery2() & executeQuery3() & executeQuery4() & executeQuery5() & executeQuery6() & executeQuery7() & executeQuery8() & executeQuery9() & executeQuery10() & executeQuery11() & executeQuery12() & executeQuery13() & executeQuery14() & executeQuery15() & executeQuery16() & changeColour());" id="cse-search-box-form-id">
+
+                        <!-- Eingabe Text -->
+                        <div style="float:left; margin-top: 0.6vw;">
+                            <input type="text" id="cse-search-input-box-id" class="gobutton" value="" autocomplete="off" size="20" placeholder="title/interpreter" style="margin-top:0vw;"/>
+                        </div>
+
+                        <!-- Abschicken -->
+                        <div style="margin-left: 2vw;">
+                            <input type="image" id="bildlos" src="buttons/startsuche.png" style="height:6vw;width:6vw; margin-top: 0vw;  " alt="Go">
+                        </div>
+                    </form>
+                    <img src="otherimg/googlecustomsearch.png" style="height: 2.5vw; width:auto;" />
+
+                    <!-- Google-->
+                    <!-- Set the "form" URL parameter to the id of the form containing the input
+                search box.
+                Set the "inputbox" URL parameter to the name or id of the query textbox.
+                'q' will be used if it's not specified.
+                Set the "lang" URL parameter to localize the branding for a specific
+                language. Find the list of supported languages at
+                http://code.google.com/apis/customsearch/docs/ref_languages.html
+            -->
+                    <script type="text/javascript">
+                        document.getElementById("cse-search-input-box-id").value = getQueryString('q');
+                        </script>
+                </div>
+            </nav>
+            <div id="div10" style="clear:both; height: 3vw;"></div>
+
+
+            <!-- Box1_________________________________________________________________________________________________________-->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden; " id="divID1">
+                <script type="text/javascript">
+                    function executeQuery1() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element1 = google.search.cse.element.getElement('nummer1');
+                        if (input.value == '') {
+                            element1.clearAllResults();
+
+                        } else {
+                            element1.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                    </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/abcmusic.png" alt="abcmusicLogo" />
+                        <div class="imgDescription">&ldquo;Your Ultimate resource of free piano sheet music, blog articles and lots more...&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton1"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID1','scrollbutton1', 'scrollbutton2');"
+                           tabindex="8" />
+                </div>
+
+                <div class="gcse-searchresults-only" data-gname="nummer1"  data-as_sitesearch="www.abcmusic.net/*" ></div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton2"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID1','scrollbutton1', 'scrollbutton2');"
+                       tabindex="8" />
+            </div>
+
+            <!-- Box2 ______________________________________________________________________________________-->
+
+            <div class="boxr" style="height: 15vw; overflow: hidden;" id="divID2">
+
+                <script type="text/javascript">
+                    function executeQuery2() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element2 = google.search.cse.element.getElement('nummer2');
+                        if (input.value == '') {
+                            element2.clearAllResults();
+
+                        } else {
+                            element2.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/musescore.png" alt="musescoreLogo" />
+                        <div class="imgDescription">&ldquo;Create, play and print beautiful sheet music&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton3"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID2','scrollbutton3', 'scrollbutton4');"
+                           tabindex="8" />
+                </div>
+
+                <div class="gcse-searchresults-only" data-gname="nummer2" data-as_sitesearch="musescore.com/*" ></div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton4"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID2','scrollbutton3', 'scrollbutton4');"
+                       tabindex="8" />
+            </div>
+
+            <!-- Box3 ____________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID3">
+                <script type="text/javascript">
+                    function executeQuery3() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element3 = google.search.cse.element.getElement('nummer3');
+                        if (input.value == '') {
+                            element3.clearAllResults();
+
+                        } else {
+                            element3.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/pianoblogspot.png" alt="PianoBlogspotLogo" />
+                        <div class="imgDescription">Piano Sheets for pop music.</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton5"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID3','scrollbutton5', 'scrollbutton6');"
+                           tabindex="8" />
+                </div>
+
+                <div class="gcse-searchresults-only" data-gname="nummer3" data-as_sitesearch="piano-sheets-for-free.blogspot.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton6"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID3','scrollbutton5', 'scrollbutton6');"
+                       tabindex="8" />
+            </div>
+
+            <!-- Box4 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID4">
+                <script type="text/javascript">
+                    function executeQuery4() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element4 = google.search.cse.element.getElement('nummer4');
+                        if (input.value == '') {
+                            element4.clearAllResults();
+
+                        } else {
+                            element4.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/imslp.png" alt="imslpLogo" />
+                        <div class="imgDescription">The International Music Score Library Project is a subscription-based project for the creation of a virtual library of public domain music scores.</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton7"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID4','scrollbutton7', 'scrollbutton8');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer4" data-as_sitesearch="imslp.org/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton8"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID4','scrollbutton7', 'scrollbutton8');"
+                       tabindex="8" />
+            </div>
+            
+        <!-- Box5 _______________________________________________________________________________________________________ -->
+
+        <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID5">
+            <script type="text/javascript">
+                    function executeQuery5() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element5 = google.search.cse.element.getElement('nummer5');
+                        if (input.value == '') {
+                            element5.clearAllResults();
+
+                        } else {
+                            element5.execute(input.value);
+
+                        }
+                        return false;
+                    }
+            </script>
+            <div class="boxEingeklappt">
+                <div class="bildMitHover">
+
+                    <img class="logo" src="logos/sheetmusicfree.png" alt="sheetmusicfreeLogo" />
+                    <div class="imgDescription">&ldquo;Sheet Music Free Download PDF Format. Piano Sheet Music Pop, Rock, Jazz, Classical and more Sheet Music genres.&rdquo;</div>
+
+                </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton9"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID5','scrollbutton9', 'scrollbutton10');"
+                       tabindex="8" />
+            </div>
+            <div class="gcse-searchresults-only" data-gname="nummer5" data-as_sitesearch="sheetmusic-free.com/*"> </div>
+            <input class="scrollbutton" type="image"
+                   id="scrollbutton10"
+                   src="buttons/scrolldownshadow.png"
+                   alt="Scroll"
+                   onclick="initResize('divID5','scrollbutton9', 'scrollbutton10');"
+                   tabindex="8" />
+        </div>
+
+            <!-- Box6 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID6">
+                <script type="text/javascript">
+                    function executeQuery6() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element6 = google.search.cse.element.getElement('nummer6');
+                        if (input.value == '') {
+                            element6.clearAllResults();
+
+                        } else {
+                            element6.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/scribd.png" alt="ScribdLogo" />
+                        <div class="imgDescription">Platform for all kinds of documents and books. Use a mobile device to view the whole sheets!</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton11"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID6','scrollbutton11', 'scrollbutton12');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer6" data-as_sitesearch="www.scribd.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton12"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID6','scrollbutton11', 'scrollbutton12');"
+                       tabindex="8" />
+            </div>
+            <!-- Box7 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID7">
+                <script type="text/javascript">
+                    function executeQuery7() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element7 = google.search.cse.element.getElement('nummer7');
+                        if (input.value == '') {
+                            element7.clearAllResults();
+
+                        } else {
+                            element7.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/pianolicious.png" alt="PianoliciousLogo" />
+                        <div class="imgDescription">Site for free sheet music.</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton13"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID7','scrollbutton13', 'scrollbutton14');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer7" data-as_sitesearch="my-pianolicious.blogspot.de/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton14"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID7','scrollbutton13', 'scrollbutton14');"
+                       tabindex="8" />
+            </div>
+            <!-- Box8 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID8">
+                <script type="text/javascript">
+                    function executeQuery8() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element8 = google.search.cse.element.getElement('nummer8');
+                        if (input.value == '') {
+                            element8.clearAllResults();
+
+                        } else {
+                            element8.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/youtube.png" alt="YoutubeLogo" />
+                        <div class="imgDescription">Look for downloads in the descriptions!</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton15"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID8','scrollbutton15', 'scrollbutton16');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer8" data-as_sitesearch="www.youtube.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton16"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID8','scrollbutton15', 'scrollbutton16');"
+                       tabindex="8" />
+            </div>
+            <!-- Box9 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID9">
+                <script type="text/javascript">
+                    function executeQuery9() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element9 = google.search.cse.element.getElement('nummer9');
+                        if (input.value == '') {
+                            element9.clearAllResults();
+
+                        } else {
+                            element9.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/ragtimepiano.png" alt="ragtimepianoLogo" />
+                        <div class="imgDescription">Site for public domain piano ragtime sheet music.</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton17"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID9','scrollbutton17', 'scrollbutton18');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer9" data-as_sitesearch="www.ragtimepiano.ca/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton18"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID9','scrollbutton17', 'scrollbutton18');"
+                       tabindex="8" />
+            </div>
+            <!-- Box10 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID10">
+                <script type="text/javascript">
+                    function executeQuery10() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element10 = google.search.cse.element.getElement('nummer10');
+                        if (input.value == '') {
+                            element10.clearAllResults();
+
+                        } else {
+                            element10.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/mutopia.png" alt="MutopiaProjectLogo" />
+                        <div class="imgDescription">&ldquo;The Mutopia Project offers sheet music editions of classical music for free download. These are based on editions in the public domain.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton19"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID10','scrollbutton19', 'scrollbutton20');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer10" data-as_sitesearch="www.mutopiaproject.org/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton20"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID10','scrollbutton19', 'scrollbutton20');"
+                       tabindex="8" />
+            </div>
+            <!-- Box11 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID11">
+                <script type="text/javascript">
+                    function executeQuery11() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element11 = google.search.cse.element.getElement('nummer11');
+                        if (input.value == '') {
+                            element11.clearAllResults();
+
+                        } else {
+                            element11.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/ragsrag.png" alt="RagsRagLogo" />
+                        <div class="imgDescription">&ldquo;free high quality ragtime piano and ragtime orchestra music and scores&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton21"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID11','scrollbutton21', 'scrollbutton22');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer11" data-as_sitesearch="www.ragsrag.com/pr/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton22"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID11','scrollbutton21', 'scrollbutton22');"
+                       tabindex="8" />
+            </div>
+            <!-- Box12 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID12">
+                <script type="text/javascript">
+                    function executeQuery12() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element12 = google.search.cse.element.getElement('nummer12');
+                        if (input.value == '') {
+                            element12.clearAllResults();
+
+                        } else {
+                            element12.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/8notes.png" alt="8notesLogo" />
+                        <div class="imgDescription">&ldquo;Free Sheet Music, Riffs, Lessons and Tools for musicians who play.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton23"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID12','scrollbutton23', 'scrollbutton24');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer12" data-as_sitesearch="www.8notes.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton24"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID12','scrollbutton23', 'scrollbutton24');"
+                       tabindex="8" />
+            </div>
+            <!-- Box13 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID13">
+                <script type="text/javascript">
+                    function executeQuery13() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element13 = google.search.cse.element.getElement('nummer13');
+                        if (input.value == '') {
+                            element13.clearAllResults();
+
+                        } else {
+                            element13.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/ultimateguitar.png" alt="UltimateGuitarLogo" />
+                        <div class="imgDescription">&ldquo;Your #1 source for chords, guitar tabs, bass tabs, ukulele chords, guitar pro and power tabs.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton25"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID13','scrollbutton25', 'scrollbutton26');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer13" data-as_sitesearch="www.ultimate-guitar.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton26"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID12','scrollbutton25', 'scrollbutton26');"
+                       tabindex="8" />
+            </div>
+            <!-- Box14 _______________________________________________________________________________________________________ -->
+
+            <div class="boxr" style="height: 15vw; overflow:hidden;" id="divID14">
+                <script type="text/javascript">
+                    function executeQuery14() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element14 = google.search.cse.element.getElement('nummer14');
+                        if (input.value == '') {
+                            element14.clearAllResults();
+
+                        } else {
+                            element14.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/jellynote.png" alt="jellynoteLogo" />
+                        <div class="imgDescription">&ldquo;Sheet music, tabs and chords with lyrics for guitar, piano, bass, ukulele, violin, drums and more.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton27"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID14','scrollbutton27', 'scrollbutton28');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer14" data-as_sitesearch="www.jellynote.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton28"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID14','scrollbutton27', 'scrollbutton28');"
+                       tabindex="8" />
+            </div>
+            <!-- Box15 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID15">
+                <script type="text/javascript">
+                    function executeQuery15() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element15 = google.search.cse.element.getElement('nummer15');
+                        if (input.value == '') {
+                            element15.clearAllResults();
+
+                        } else {
+                            element15.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/flutetunes.png" alt="flutetunesLogo" />
+                        <div class="imgDescription">&ldquo;Free sheet music for flute, fingering charts, scales, an online metronome and an extensive music glossary.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton29"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID15','scrollbutton29', 'scrollbutton30');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer15" data-as_sitesearch="www.flutetunes.com/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton30"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID15','scrollbutton29', 'scrollbutton30');"
+                       tabindex="8" />
+            </div>
+            <!-- Box16 _______________________________________________________________________________________________________ -->
+
+            <div class="boxl" style="height: 15vw; overflow:hidden;" id="divID16">
+                <script type="text/javascript">
+                    function executeQuery16() {
+                        var input = document.getElementById('cse-search-input-box-id');
+                        var element16 = google.search.cse.element.getElement('nummer16');
+                        if (input.value == '') {
+                            element16.clearAllResults();
+
+                        } else {
+                            element16.execute(input.value);
+
+                        }
+                        return false;
+                    }
+                </script>
+                <div class="boxEingeklappt">
+                    <div class="bildMitHover">
+
+                        <img class="logo" src="logos/choralwiki.png" alt="choralwikiLogo" />
+                        <div class="imgDescription">&ldquo;Here you will find free choral/vocal scores, texts, translations, and other useful information.&rdquo;</div>
+
+                    </div>
+                    <input class="scrollbutton" type="image"
+                           id="scrollbutton31"
+                           src="buttons/scrolldownshadow.png"
+                           alt="Scroll"
+                           onclick="initResize('divID16','scrollbutton31', 'scrollbutton32');"
+                           tabindex="8" />
+                </div>
+                <div class="gcse-searchresults-only" data-gname="nummer16" data-as_sitesearch="www.cpdl.org/*"> </div>
+                <input class="scrollbutton" type="image"
+                       id="scrollbutton32"
+                       src="buttons/scrolldownshadow.png"
+                       alt="Scroll"
+                       onclick="initResize('divID16','scrollbutton31', 'scrollbutton32');"
+                       tabindex="8" />
+            </div>
+            <footer id="footer" style="clear:both; width:100%">
+                <a href="https://www.icons8.com" style="width: 30%; margin-left: 35%; margin-top: 5%;" target="_blank">
+                    <img src="otherimg/icon8referenz.png" style="width: 30%; height:auto;" />
+                </a>
+            </footer>
+            <script type="text/javascript">
+                switch(localStorage.getItem('speicherChange')){
+                    case 'Guitar':
+                        $('#divID1').insertBefore('#divID14');
+                        $('#divID13').insertBefore('#divID2');
+                        break;
+                    case 'Flute':
+                        $('#divID15').insertBefore('#divID2');
+                        $('#divID1').insertBefore('#divID16');
+                        break;
+                    case 'Voice':
+                        $('#divID1').insertBefore('#footer');
+                        $('#divID16').insertBefore('#divID2');
+                        break;
+                }
+            </script>
+        </div>
+        <img id="hoch" src="buttons/scrollhochshadow2.png" style="width:6vw; margin-left:92%; margin-top: 2vw; position: fixed; cursor: pointer;" alt="ScrollUp" />
+        <a href="https://www.facebook.com/sheetsearch" target="_blank">
+            <img src="buttons/facebookLINK.png" style="width:6vw; margin-left:1.8%; margin-top: 2vw; position: fixed;" alt="facebookLINK" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCXws0ea8oM5WJeUbF6R2J6Q" target="_blank">
+            <img src="buttons/youtubeLINK.png" style="width:6vw; margin-left:1.8%; margin-top: 13vw; position: fixed;" alt="youtubeLINK" />
+        </a>
+        
+</body>
+
+</html>
